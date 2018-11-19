@@ -1,12 +1,12 @@
 <template>
 	<view class="index">
 		<view class="tags">
-			<bclok v-for="(value, index) in data" :key="index">
+			<block v-for="(value, index) in data" :key="index">
 				<view class="tag" @tap="goList(value)">
 					<image class="tag-img" :src="value.icon"></image>
 					<text class="tag-text">{{value.type}}</text>
 				</view>
-			</bclok>
+			</block>
 		</view>
 	</view>
 </template>
