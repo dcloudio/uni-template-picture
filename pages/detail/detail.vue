@@ -222,7 +222,7 @@
 			},
 			getData(e) {
 				uni.request({
-					url: "https://uniapp.dcloud.io/tuku/detail.php?id=" + e,
+					url: "https://unidemo.dcloud.net.cn/api/picture/detail.php?id=" + e,
 					success: (res) => {
 						if (res.data.code !== 0) {
 							uni.showModal({
