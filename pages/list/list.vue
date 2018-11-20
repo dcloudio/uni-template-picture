@@ -89,7 +89,7 @@
 		methods: {
 			getData(e) {
 				uni.request({
-					url: 'https://unidemo.dcloud.net.cn/api/picture/list.php?type=' + this.id,
+					url: this.$serverUrl + '/api/picture/list.php?type=' + this.id,
 					success: (ret) => {
 						if (ret.statusCode !== 200) {
 							console.log("请求失败", ret)
