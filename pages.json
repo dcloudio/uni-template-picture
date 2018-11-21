@@ -1,5 +1,5 @@
 {
-	"pages": [{//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [{ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		"path": "pages/new/new",
 		"style": {
 			"navigationBarTitleText": "最新",
@@ -16,13 +16,20 @@
 		"style": {
 			"navigationBarTitleText": "详情",
 			"navigationBarBackgroundColor": "#000000",
-			"app-plus":{
-				"bounce":"none",
-				"titleNView":{
-					"buttons":[{
-						"fontSrc":"/static/icon.ttf",
-						"fontSize":"24px",
-						"text":"\ue602"
+			"app-plus": {
+				"bounce": "none",
+				"titleNView": {
+					"buttons": [{
+						"type": "share"
+					}]
+				}
+			},
+			"h5": {
+				"titleNView": {
+					"buttons": [{
+						"type": "share"
+					}, {
+						"type": "favorite"
 					}]
 				}
 			}

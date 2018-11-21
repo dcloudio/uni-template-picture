@@ -5,13 +5,15 @@
 				<image :src="value" mode="widthFix"></image>
 			</swiper-item>
 		</swiper>
-		<view class="detail-btn-view">
-			<view class="download" @click="download"></view>
-			<!-- #ifdef APP-PLUS -->
-			<view v-if="showBtn" class="setting" @click="setting">设为壁纸</view>
-			<!-- #endif -->
-			<view class="collect" @click="collect"></view>
-		</view>
+        <!-- #ifndef H5 -->
+        <view class="detail-btn-view">
+        	<view class="download" @click="download"></view>
+        	<!-- #ifdef APP-PLUS -->
+        	<view v-if="showBtn" class="setting" @click="setting">设为壁纸</view>
+        	<!-- #endif -->
+        	<view class="collect" @click="collect"></view>
+        </view>
+        <!-- #endif -->
 	</view>
 </template>
 
@@ -88,6 +90,10 @@
 			}
 		},
 		onNavigationBarButtonTap(e) {
+            if(e.index === 1){
+                this.collect();
+                return;
+            }
 			if (this.providerList.length === 0) {
 				uni.showModal({
 					title: "当前环境无分享渠道!",
