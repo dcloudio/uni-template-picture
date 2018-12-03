@@ -38,7 +38,6 @@
 			}
 			// #endif
 			this.screenHeight = uni.getSystemInfoSync().windowHeight;
-			console.log(e.data);
 			this.detailDec = e.data;
 			let data = JSON.parse(e.data);
 			this.imgLength = data.img_num;
@@ -134,7 +133,6 @@
 				uni.downloadFile({
 					url: this.data[this.index],
 					success: (e) => {
-						console.log(e);
 						uni.saveImageToPhotosAlbum({
 							filePath: e.tempFilePath,
 							success: () => {
