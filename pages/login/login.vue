@@ -21,8 +21,8 @@
 
 <script>
 	export default {
-		data: {
-			
+		data() {
+			return {};
 		},
 		methods: {
 			login(e) {

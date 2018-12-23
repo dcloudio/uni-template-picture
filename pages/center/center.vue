@@ -32,6 +32,11 @@
 			</view>
 		</view>
 		<view class="center-list">
+			<view class="center-list-item border-bottom" @click="goAbout">
+				<text class="list-icon">&#xe603;</text>
+				<text class="list-text">关于</text>
+				<text class="navigat-arrow">&#xe65e;</text>
+			</view>
 			<view class="center-list-item">
 				<text class="list-icon">&#xe609;</text>
 				<text class="list-text">帐号管理</text>
@@ -57,6 +62,18 @@
 						url:"../login/login"
 					})
 				}
+			},
+			goAbout() {
+				// #ifdef APP-PLUS
+				uni.navigateTo({
+					url:'/platforms/app-plus/about/about'
+				});
+				// #endif
+				// #ifdef H5
+				uni.navigateTo({
+					url:'/platforms/h5/about/about'
+				});
+				// #endif
 			}
 		}
 	}
