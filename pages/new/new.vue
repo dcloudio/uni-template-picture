@@ -104,7 +104,7 @@
 			},
 			goDetail(e) {
 				uni.navigateTo({
-					url:"../detail/detail?data=" + JSON.stringify(e)
+					url:"../detail/detail?data=" + encodeURIComponent(JSON.stringify(e))
 				})
 			},
 			share(e) {

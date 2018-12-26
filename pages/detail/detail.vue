@@ -39,7 +39,7 @@
 			// #endif
 			this.screenHeight = uni.getSystemInfoSync().windowHeight;
 			this.detailDec = e.data;
-			let data = JSON.parse(e.data);
+			let data = JSON.parse(decodeURIComponent(e.data));
 			this.imgLength = data.img_num;
 			this.data.push(data.img_src);
 			this.getData(data.id);
