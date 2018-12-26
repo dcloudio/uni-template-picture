@@ -4,9 +4,7 @@
 			<view class="row">
 				<view class="card card-list2" v-for="(item,key) in list" @click="goDetail(item)" :key="key">
 					<image class="card-img card-list2-img" :src="item.img_src"></image>
-					<view class="card-num-view card-list2-num-view">
-						<text class="card-num card-list2-num">{{item.img_num}}P</text>
-					</view>
+                    <text class="card-num-view card-list2-num-view">{{item.img_num}}P</text>
 					<view class="card-bottm row">
 						<view class="car-title-view row">
 							<text class="card-title card-list2-title">{{item.title}}</text>

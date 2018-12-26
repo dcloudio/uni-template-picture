@@ -2,7 +2,7 @@
 	font-family: texticons;
 	font-weight: normal;
 	font-style: normal;
-	src: url('https://at.alicdn.com/t/font_702773_ttt8tj203j.ttf') format('truetype');
+	src: url('https://at.alicdn.com/t/font_702773_g9f89om4v3j.ttf') format('truetype');
 }
 
 .index {
@@ -39,17 +39,21 @@
 
 .card-num {
 	color: #FFFFFF;
-	font-size: 26upx;
+	font-size: 13px;
 	text-align: center;
 }
 
 .card-num-view {
 	background-color: #FF80AB;
-	height: 30upx;
-	line-height: 30upx;
-	padding: 0 10upx;
+    line-height: 1;
+    display: inline-block;
+	padding: 3px 6px;
+    color: #FFFFFF;
+    font-size: 12px;
+    text-align: center;
 	justify-content: center;
-	border-radius: 30upx;
+    align-items: center;
+	border-radius: 15px;
 	position: absolute;
 	top: 20upx;
 	right: 20upx;
@@ -115,8 +119,8 @@
 }
 
 .card-list2-num-view {
-	height: 27upx;
-	border-radius: 27upx;
+	transform: scale(0.8);
+    transform-origin: right;
 }
 
 .card-list2-num {

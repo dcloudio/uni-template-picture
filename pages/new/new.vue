@@ -3,9 +3,7 @@
 		<block v-for="(item, index) in list" :key="index">
 			<view class="card" @click="goDetail(item)">
 				<image class="card-img" :src="item.img_src" mode="aspectFill"></image>
-				<view class="card-num-view">
-					<text class="card-num">{{item.img_num}}P</text>
-				</view>
+				<text class="card-num-view">{{item.img_num}}P</text>
 				<view class="card-bottm row">
 					<view class="car-title-view row">
 						<text class="card-title">{{item.title}}</text>
@@ -65,6 +63,7 @@
 			});
 		},
 		onReachBottom() {
+            console.log("滑动到页面底部")
 			this.getData();
 		},
 		onPullDownRefresh() {
