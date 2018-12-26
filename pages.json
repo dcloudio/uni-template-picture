@@ -16,6 +16,7 @@
 		"style": {
 			"navigationBarTitleText": "详情",
 			"navigationBarBackgroundColor": "#000000",
+            "backgroundColor": "#000000",
 			"app-plus": {
 				"bounce": "none",
 				"titleNView": {
@@ -60,7 +61,7 @@
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "妹子图",
 		"navigationBarBackgroundColor": "#FF80AB",
-		"backgroundColor": "#fbf9fe"
+		"backgroundColor": "#EFEFEF"
 	},
 	"tabBar": {
 		"color": "#444444",

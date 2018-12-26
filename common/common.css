@@ -7,6 +7,8 @@
 
 .index {
 	flex: 1;
+    width: 750upx;
+    min-height: 100vh;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
@@ -150,11 +152,12 @@
 	align-content: flex-start;
 }
 
-.tag {
+view.tag,.tag {
 	display: block;
 	width: 177.5upx;
 	height: 180upx;
 	padding: 24upx;
+    line-height: 1;
 	box-sizing: border-box;
 	text-align: center;
 }
@@ -178,6 +181,7 @@
 
 .center {
 	flex-direction: column;
+    min-height: 100vh;
 }
 
 .logo {
@@ -290,12 +294,13 @@
 	flex: 1;
 	flex-direction: column;
 	width: 750upx;
+    min-height: 100vh;
 	padding-top: 30upx;
 }
 
 .input-view {
 	border-bottom-style: solid;
-	border-bottom-width: 3upx;
+	border-bottom-width: 1upx;
 	border-bottom-color: #ddd;
 	background-color: #fff;
 	flex-direction: row;
