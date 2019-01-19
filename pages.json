@@ -44,7 +44,8 @@
 		{
 			"path": "pages/tag/tag",
 			"style": {
-				"navigationBarTitleText": "分类"
+				"navigationBarTitleText": "分类",
+                "enablePullDownRefresh": false
 			}
 		},
 		{
@@ -57,7 +58,8 @@
 		{
 			"path": "pages/center/center",
 			"style": {
-				"navigationBarTitleText": "个人中心"
+				"navigationBarTitleText": "个人中心",
+                "enablePullDownRefresh": false
 			}
 		},
 		{
