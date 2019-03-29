@@ -13,7 +13,12 @@
 	// 5+App特有相关
 	"quickapp": {},
 	// 快应用特有相关
-	"mp-weixin": {},
+	"mp-weixin": {
+		"setting" : {
+		    "urlCheck" : false
+		},
+		"usingComponents": true
+	},
 	"h5": {
 		"template": "template.h5.html",
 		"router": {
