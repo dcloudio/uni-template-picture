@@ -31,12 +31,8 @@
 				"h5": {
 					"titleNView": {
 						"buttons": [{
-								"type": "share"
-							},
-							{
-								"type": "favorite"
-							}
-						]
+							"type": "favorite"
+						}]
 					}
 				}
 			}
@@ -45,7 +41,7 @@
 			"path": "pages/tag/tag",
 			"style": {
 				"navigationBarTitleText": "分类",
-                "enablePullDownRefresh": false
+				"enablePullDownRefresh": false
 			}
 		},
 		{
@@ -59,7 +55,7 @@
 			"path": "pages/center/center",
 			"style": {
 				"navigationBarTitleText": "个人中心",
-                "enablePullDownRefresh": false
+				"enablePullDownRefresh": false
 			}
 		},
 		{
@@ -69,16 +65,8 @@
 			}
 		},
 		{
-			"path": "platforms/app-plus/about/about",
-			"style": {
-				"navigationBarTitleText": "关于"
-			}
-		},
-		{
-			"path": "platforms/h5/about/about",
-			"style": {
-				"navigationBarTitleText": "关于"
-			}
+			"path": "pages/about/about",
+			"style": {}
 		}
 	],
 	"globalStyle": {
