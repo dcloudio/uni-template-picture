@@ -1,7 +1,7 @@
 <template>
 	<view class="index">
 		<view class="tags">
-			<block v-for="(value, index) in data" :key="index">
+			<block v-for="value in data" :key="value.id">
 				<view class="tag" @tap="goList(value)">
 					<image class="tag-img" :src="value.icon"></image>
 					<text class="tag-text">{{value.type}}</text>
@@ -15,8 +15,7 @@
 	export default {
 		data() {
 			return {
-				data: [
-					{
+				data: [{
 						type: '动物',
 						id: 1,
 						icon: 'http://placehold.it/150x150'
@@ -62,7 +61,7 @@
 		methods: {
 			goList(value) {
 				uni.navigateTo({
-					url:'../list/list?type=' + value.type + '&id=' + value.id
+					url: '../list/list?type=' + value.type + '&id=' + value.id
 				})
 			}
 		}
@@ -70,5 +69,5 @@
 </script>
 
 <style>
-	
+
 </style>

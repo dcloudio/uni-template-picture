@@ -1,19 +1,19 @@
 <template>
 	<view class="index">
 		<swiper @change="swpierChange" :style="{height:screenHeight + 'px'}">
-			<swiper-item v-for="(value,index) in data" :key="index" @click="preImg(index)">
+			<swiper-item v-for="(value,index) in data" :key="value" @click="preImg(index)">
 				<image :src="value" mode="widthFix"></image>
 			</swiper-item>
 		</swiper>
-        <!-- #ifndef H5 -->
-        <view class="detail-btn-view">
-        	<view class="download" @click="download"></view>
-        	<!-- #ifdef APP-PLUS -->
-        	<view v-if="showBtn" class="setting" @click="setting">设为壁纸</view>
-        	<!-- #endif -->
-        	<view class="collect" @click="collect"></view>
-        </view>
-        <!-- #endif -->
+		<!-- #ifndef H5 -->
+		<view class="detail-btn-view">
+			<view class="download" @click="download"></view>
+			<!-- #ifdef APP-PLUS -->
+			<view v-if="showBtn" class="setting" @click="setting">设为壁纸</view>
+			<!-- #endif -->
+			<view class="collect" @click="collect"></view>
+		</view>
+		<!-- #endif -->
 	</view>
 </template>
 
@@ -28,7 +28,7 @@
 				imgLength: 0,
 				providerList: [],
 				data: [],
-				detailDec:""
+				detailDec: ""
 			}
 		},
 		onLoad(e) {
@@ -83,50 +83,53 @@
 		},
 		onShareAppMessage() {
 			return {
-				title: "欢迎使用uni-app看图模板",
+				title: '欢迎使用uni-app看图模板',
 				path: '/pages/detail/detail?data=' + this.detailDec,
-				imageUrl:this.data[this.index]
+				imageUrl: this.data[this.index]
 			}
 		},
 		onNavigationBarButtonTap(e) {
-            if(e.index === 1){
-                this.collect();
-                return;
-            }
-			if (this.providerList.length === 0) {
-				uni.showModal({
-					title: "当前环境无分享渠道!",
-					showCancel: false
-				})
-				return;
-			}
-			let itemList = this.providerList.map(function (value) {
-				return value.name
-			})
-			uni.showActionSheet({
-				itemList: itemList,
-				success: (res) => {
-					uni.share({
-						provider: this.providerList[res.tapIndex].id,
-						scene: this.providerList[res.tapIndex].type && this.providerList[res.tapIndex].type === 'WXSenceTimeline' ?
-							'WXSenceTimeline' : "WXSceneSession",
-						type: 0,
-						title: "uni-app模版",
-						summary: "欢迎使用uni-app模版",
-						imageUrl: this.data[this.index],
-						href: "https://uniapp.dcloud.io",
-						success: (res) => {
-							console.log("success:" + JSON.stringify(res));
-						},
-						fail: (e) => {
-							uni.showModal({
-								content: e.errMsg,
-								showCancel: false
-							})
-						}
-					});
+			if (e.index === 0) {
+				// #ifdef APP-PLUS
+				if (this.providerList.length === 0) {
+					uni.showModal({
+						title: '当前环境无分享渠道!',
+						showCancel: false
+					})
+					return;
 				}
-			})
+				let itemList = this.providerList.map(function(value) {
+					return value.name
+				})
+				uni.showActionSheet({
+					itemList: itemList,
+					success: (res) => {
+						uni.share({
+							provider: this.providerList[res.tapIndex].id,
+							scene: this.providerList[res.tapIndex].type && this.providerList[res.tapIndex].type === 'WXSenceTimeline' ?
+								'WXSenceTimeline' : 'WXSceneSession',
+							type: 0,
+							title: 'uni-app模版',
+							summary: '欢迎使用uni-app模版',
+							imageUrl: this.data[this.index],
+							href: 'https://uniapp.dcloud.io',
+							success: (res) => {
+								console.log('success:' + JSON.stringify(res));
+							},
+							fail: (e) => {
+								uni.showModal({
+									content: e.errMsg,
+									showCancel: false
+								})
+							}
+						});
+					}
+				});
+				// #endif
+				// #ifdef H5
+				this.collect();
+				// #endif
+			}
 		},
 		methods: {
 			download() {
@@ -137,21 +140,21 @@
 							filePath: e.tempFilePath,
 							success: () => {
 								uni.showToast({
-									icon: "none",
-									title: "已保存到手机相册"
+									icon: 'none',
+									title: '已保存到手机相册'
 								})
 							},
 							fail: () => {
 								uni.showToast({
-									icon: "none",
-									title: "保存到手机相册失败"
+									icon: 'none',
+									title: '保存到手机相册失败'
 								})
 							}
 						});
 					},
 					fail: (e) => {
 						uni.showModal({
-							content: "下载失败，" + e.errMsg,
+							content: '下载失败，' + e.errMsg,
 							showCancel: false
 						})
 					}
@@ -159,44 +162,44 @@
 			},
 			collect() {
 				uni.showToast({
-					icon: "none",
-					title: "点击收藏按钮"
+					icon: 'none',
+					title: '点击收藏按钮'
 				})
 			},
 			//#ifdef APP-PLUS
 			setting() {
 				uni.showToast({
-					icon: "none",
-					title: "正在设为壁纸"
+					icon: 'none',
+					title: '正在设为壁纸'
 				})
 				setTimeout(() => {
-					var WallpaperManager = plus.android.importClass("android.app.WallpaperManager");
+					var WallpaperManager = plus.android.importClass('android.app.WallpaperManager');
 					var Main = plus.android.runtimeMainActivity();
 					var wallpaperManager = WallpaperManager.getInstance(Main);
 					plus.android.importClass(wallpaperManager);
-					var BitmapFactory = plus.android.importClass("android.graphics.BitmapFactory");
+					var BitmapFactory = plus.android.importClass('android.graphics.BitmapFactory');
 					uni.downloadFile({
 						url: this.data[this.index],
 						success: (e) => {
-							var filePath = e.tempFilePath.replace("file://", "");
+							var filePath = e.tempFilePath.replace('file://', '');
 							var bitmap = BitmapFactory.decodeFile(filePath);
 							try {
 								wallpaperManager.setBitmap(bitmap);
 								uni.showToast({
-									icon: "none",
-									title: "壁纸设置成功"
+									icon: 'none',
+									title: '壁纸设置成功'
 								})
 							} catch (e) {
 								uni.showToast({
-									icon: "none",
-									title: "壁纸设置失败"
+									icon: 'none',
+									title: '壁纸设置失败'
 								})
 							}
 						},
 						fail: () => {
 							uni.showToast({
-								icon: "none",
-								title: "壁纸设置失败"
+								icon: 'none',
+								title: '壁纸设置失败'
 							})
 						}
 					})
@@ -206,7 +209,7 @@
 			swpierChange(e) {
 				this.index = e.detail.current;
 				uni.setNavigationBarTitle({
-					title: e.detail.current + 1 + "/" + this.imgLength
+					title: e.detail.current + 1 + '/' + this.imgLength
 				})
 			},
 			preImg(index) {
@@ -226,11 +229,11 @@
 			},
 			getData(e) {
 				uni.request({
-					url: this.$serverUrl + "/api/picture/detail.php?id=" + e,
+					url: this.$serverUrl + '/api/picture/detail.php?id=' + e,
 					success: (res) => {
 						if (res.data.code !== 0) {
 							uni.showModal({
-								content: "请求失败，失败原因：" + res.data.msg,
+								content: '请求失败，失败原因：' + res.data.msg,
 								showCancel: false
 							})
 							return;
@@ -240,7 +243,7 @@
 					},
 					fail: () => {
 						uni.showModal({
-							content: "请求失败，请重试!",
+							content: '请求失败，请重试!',
 							showCancel: false
 						})
 					}
@@ -253,7 +256,7 @@
 <style>
 	page {
 		background-color: #000;
-        height: 100%;
+		height: 100%;
 	}
 
 	swiper {

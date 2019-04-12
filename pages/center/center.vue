@@ -39,7 +39,7 @@
 			</view>
 			<view class="center-list-item">
 				<text class="list-icon">&#xe609;</text>
-				<text class="list-text">帐号管理</text>
+				<text class="list-text">账号管理</text>
 				<text class="navigat-arrow">&#xe65e;</text>
 			</view>
 		</view>
@@ -50,30 +50,23 @@
 	export default {
 		data() {
 			return {
-				login:false,
-				avatarUrl:"../../static/logo.png",
-				uerInfo:{}
+				login: false,
+				avatarUrl: '/static/logo.png',
+				uerInfo: {}
 			}
 		},
 		methods: {
 			goLogin() {
-				if(!this.login){
+				if (!this.login) {
 					uni.navigateTo({
-						url:"../login/login"
-					})
+						url: '/pages/login/login'
+					});
 				}
 			},
 			goAbout() {
-				// #ifdef APP-PLUS
 				uni.navigateTo({
-					url:'/platforms/app-plus/about/about'
+					url: '/pages/about/about'
 				});
-				// #endif
-				// #ifdef H5
-				uni.navigateTo({
-					url:'/platforms/h5/about/about'
-				});
-				// #endif
 			}
 		}
 	}

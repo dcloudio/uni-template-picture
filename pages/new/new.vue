@@ -1,6 +1,6 @@
 <template>
 	<view class="index">
-		<block v-for="(item, index) in list" :key="index">
+		<block v-for="item in list" :key="item.img_src">
 			<view class="card" @click="goDetail(item)">
 				<image class="card-img" :src="item.img_src" mode="aspectFill"></image>
 				<text class="card-num-view">{{item.img_num}}P</text>
@@ -29,7 +29,7 @@
 		onLoad() {
 			this.getData();
 			uni.getProvider({
-				service: "share",
+				service: 'share',
 				success: (e) => {
 					let data = []
 					for (let i = 0; i < e.provider.length; i++) {
@@ -58,32 +58,33 @@
 					this.providerList = data;
 				},
 				fail: (e) => {
-					console.log("获取登录通道失败", e);
+					console.log('获取分享通道失败', e);
 				}
 			});
 		},
 		onReachBottom() {
-            console.log("滑动到页面底部")
+			console.log('滑动到页面底部')
 			this.getData();
 		},
 		onPullDownRefresh() {
-			console.log("下拉刷新");
+			console.log('下拉刷新');
 			this.refreshing = true;
 			this.getData();
 		},
 		methods: {
 			getData() {
 				uni.request({
-					url: this.$serverUrl + '/api/picture/posts.php?page=' + (this.refreshing ? 1 : this.fetchPageNum) + '&per_page=5',
+					url: this.$serverUrl + '/api/picture/posts.php?page=' + (this.refreshing ? 1 : this.fetchPageNum) +
+						'&per_page=5',
 					success: (ret) => {
-						console.log("data",ret);
+						console.log('data', ret);
 						if (ret.statusCode !== 200) {
-							console.log("失败!");
+							console.log('失败!');
 						} else {
 							if (this.refreshing && ret.data[0].id === this.list[0].id) {
 								uni.showToast({
-									title: "已经最新",
-									icon: "none",
+									title: '已经最新',
+									icon: 'none',
 								})
 								this.refreshing = false;
 								uni.stopPullDownRefresh();
@@ -104,18 +105,18 @@
 			},
 			goDetail(e) {
 				uni.navigateTo({
-					url:"../detail/detail?data=" + encodeURIComponent(JSON.stringify(e))
+					url: '../detail/detail?data=' + encodeURIComponent(JSON.stringify(e))
 				})
 			},
 			share(e) {
 				if (this.providerList.length === 0) {
 					uni.showModal({
-						title: "当前环境无分享渠道!",
+						title: '当前环境无分享渠道!',
 						showCancel: false
 					})
 					return;
 				}
-				let itemList = this.providerList.map(function (value) {
+				let itemList = this.providerList.map(function(value) {
 					return value.name
 				})
 				uni.showActionSheet({
@@ -123,19 +124,20 @@
 					success: (res) => {
 						uni.share({
 							provider: this.providerList[res.tapIndex].id,
-							scene: this.providerList[res.tapIndex].type && this.providerList[res.tapIndex].type === 'WXSenceTimeline' ? 'WXSenceTimeline' : "WXSceneSession",
+							scene: this.providerList[res.tapIndex].type && this.providerList[res.tapIndex].type === 'WXSenceTimeline' ?
+								'WXSenceTimeline' : 'WXSceneSession',
 							type: 0,
-							title:"uni-app模版",
+							title: 'uni-app模版',
 							summary: e.title,
-							imageUrl:e.img_src,
-							href:"https://uniapp.dcloud.io",
+							imageUrl: e.img_src,
+							href: 'https://uniapp.dcloud.io',
 							success: (res) => {
-								console.log("success:" + JSON.stringify(res));
+								console.log('success:' + JSON.stringify(res));
 							},
 							fail: (e) => {
 								uni.showModal({
 									content: e.errMsg,
-									showCancel:false
+									showCancel: false
 								})
 							}
 						});
