@@ -16,9 +16,18 @@
 	"quickapp": {},
 	// 快应用特有相关
 	"mp-weixin": {
-		"setting" : {
-		    "urlCheck" : false
+		"setting": {
+			"urlCheck": false
 		},
+		"usingComponents": true
+	},
+	"mp-alipay": {
+		"usingComponents": true
+	},
+	"mp-baidu": {
+		"usingComponents": true
+	},
+	"mp-toutiao": {
 		"usingComponents": true
 	},
 	"h5": {
