@@ -1,20 +1,20 @@
 <template>
-	<view class="index">
-		<block v-for="list in lists" :key="list.id">
-			<view class="row">
-				<view class="card card-list2" v-for="item in list.data" @click="goDetail(item)" :key="item.img_src">
-					<image class="card-img card-list2-img" :src="item.img_src"></image>
-					<text class="card-num-view card-list2-num-view">{{item.img_num}}P</text>
-					<view class="card-bottm row">
-						<view class="car-title-view row">
-							<text class="card-title card-list2-title">{{item.title}}</text>
-						</view>
-						<view @click.stop="share(item)" class="card-share-view"></view>
+	<view class="grid">
+		<view class="grid-c-06" v-for="item in dataList" :key="item.guid">
+			<view class="panel" @click="goDetail(item)">
+				<image class="card-img card-list2-img" :src="item.img_src"></image>
+				<text class="card-num-view card-list2-num-view">{{item.img_num}}P</text>
+				<view class="card-bottm row">
+					<view class="car-title-view row">
+						<text class="card-title card-list2-title">{{item.title}}</text>
 					</view>
+					<view @click.stop="share(item)" class="card-share-view"></view>
 				</view>
 			</view>
-		</block>
-		<text class="loadMore">{{loadMoreText}}</text>
+		</view>
+		<view class="grid-c-12">
+			<text class="loadMore">{{loadMoreText}}</text>
+		</view>
 	</view>
 </template>
 
@@ -24,7 +24,7 @@
 			return {
 				refreshing: false,
 				loadMoreText: '加载中...',
-				lists: [],
+				dataList: [],
 				id: 0,
 				fetchPageNum: 0
 			}
@@ -92,45 +92,46 @@
 					success: (ret) => {
 						if (ret.statusCode !== 200) {
 							console.log('请求失败', ret)
+							return;
+						}
+
+						const data = ret.data.data;
+
+						if (this.refreshing && data[0].id === this.dataList[0].id) {
+							uni.showToast({
+								title: '已经最新',
+								icon: 'none',
+							});
+							this.refreshing = false;
+							uni.stopPullDownRefresh();
+							return;
+						}
+
+						let list = [];
+						for (var i = 0; i < data.length; i++) {
+							var item = data[i];
+							item.guid = this.newGuid() + item.id
+							list.push(item);
+						}
+
+						if (this.refreshing) {
+							this.refreshing = false;
+							uni.stopPullDownRefresh();
+							this.dataList = list;
+							this.fetchPageNum = 2;
 						} else {
-							if (this.refreshing && ret.data.data[0].id === this.lists[0][0].id) {
-								uni.showToast({
-									title: '已经最新',
-									icon: 'none',
-								});
-								this.refreshing = false;
-								uni.stopPullDownRefresh();
-								return;
-							}
-							let list = {
-									id: '',
-									data: []
-								},
-								lists = [],
-								data = ret.data.data;
-							for (let i = 0, length = data.length; i < length; i++) {
-								let index = Math.floor(i / 2);
-								list.id = 'list' + i;
-								list.data.push(data[i]);
-								if (i % 2 == 1) {
-									lists.push(list);
-									list.data = [];
-								}
-							}
-							console.log('list页面得到lists', lists);
-							if (this.refreshing) {
-								this.refreshing = false;
-								uni.stopPullDownRefresh();
-								this.lists = lists;
-								this.fetchPageNum = 2;
-							} else {
-								this.lists = this.lists.concat(lists);
-								this.fetchPageNum += 1;
-							}
+							this.dataList = this.dataList.concat(list);
 							this.fetchPageNum += 1;
 						}
+						this.fetchPageNum += 1;
 					}
 				});
+			},
+			newGuid() {
+				let s4 = function() {
+					return (65536 * (1 + Math.random()) | 0).toString(16).substring(1);
+				}
+				return (s4() + s4() + "-" + s4() + "-4" + s4().substr(0, 3) + "-" + s4() + "-" + s4() + s4() + s4()).toUpperCase();
 			},
 			goDetail(e) {
 				uni.navigateTo({
@@ -177,6 +178,12 @@
 	}
 </script>
 
-<style>
+<style scoped>
+	.grid {
+		padding-top: 10px;
+	}
 
+	.grid-c-12 {
+		justify-content: center;
+	}
 </style>

@@ -7,8 +7,8 @@
 
 .index {
 	flex: 1;
-    width: 750upx;
-    min-height: 100vh;
+	width: 750upx;
+	min-height: 100vh;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
@@ -45,14 +45,14 @@
 
 .card-num-view {
 	background-color: #FF80AB;
-    line-height: 1;
-    display: inline-block;
+	line-height: 1;
+	display: inline-block;
 	padding: 3px 6px;
-    color: #FFFFFF;
-    font-size: 12px;
-    text-align: center;
+	color: #FFFFFF;
+	font-size: 12px;
+	text-align: center;
 	justify-content: center;
-    align-items: center;
+	align-items: center;
 	border-radius: 15px;
 	position: absolute;
 	top: 20upx;
@@ -120,7 +120,7 @@
 
 .card-list2-num-view {
 	transform: scale(0.8);
-    transform-origin: right;
+	transform-origin: right;
 }
 
 .card-list2-num {
@@ -156,12 +156,13 @@
 	align-content: flex-start;
 }
 
-view.tag,.tag {
+view.tag,
+.tag {
 	display: block;
 	width: 177.5upx;
 	height: 180upx;
 	padding: 24upx;
-    line-height: 1;
+	line-height: 1;
 	box-sizing: border-box;
 	text-align: center;
 }
@@ -185,7 +186,7 @@ view.tag,.tag {
 
 .center {
 	flex-direction: column;
-    min-height: 100vh;
+	min-height: 100vh;
 }
 
 .logo {
@@ -298,7 +299,7 @@ view.tag,.tag {
 	flex: 1;
 	flex-direction: column;
 	width: 750upx;
-    min-height: 100vh;
+	min-height: 100vh;
 	padding-top: 30upx;
 }
 
@@ -394,15 +395,134 @@ button.register {
 	background: #eee;
 	color: #555;
 }
-.detail-btn-view view text{
+
+.detail-btn-view view text {
 	margin-left: 10upx;
 }
-.detail-btn-view .download:before { 
+
+.detail-btn-view .download:before {
 	content: '\e617';
 }
-.detail-btn-view .collect:before { 
+
+.detail-btn-view .collect:before {
 	content: '\e68d';
 }
+
 .detail-btn-view .setting {
 	flex: 1;
+}
+
+
+.grid {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	padding-left: 5px;
+	padding-right: 5px;
+	box-sizing: border-box;
+}
+
+.grid-c-01,
+.grid-c-02,
+.grid-c-03,
+.grid-c-04,
+.grid-c-05,
+.grid-c-06,
+.grid-c-07,
+.grid-c-08,
+.grid-c-09,
+.grid-c-10,
+.grid-c-11,
+.grid-c-12 {
+	position: relative;
+	width: 100%;
+	padding-left: 5px;
+	padding-right: 5px;
+	box-sizing: border-box;
+}
+
+.grid-c-auto {
+	flex: 0 0 auto;
+	width: auto;
+	max-width: none;
+}
+
+.grid-c-fill {
+	flex-basis: 0;
+	flex: 1;
+	flex-grow: 1;
+	max-width: 100%;
+}
+
+.grid-c-none {
+	flex: none;
+}
+
+.grid-c-01 {
+	flex: 0 0 8.333333%;
+	max-width: 8.333333%;
+}
+
+.grid-c-02 {
+	flex: 0 0 16.666667%;
+	max-width: 16.666667%;
+}
+
+.grid-c-03 {
+	flex: 0 0 25%;
+	max-width: 25%;
+}
+
+.grid-c-04 {
+	flex: 0 0 33.333333%;
+	max-width: 33.333333%;
+}
+
+.grid-c-05 {
+	flex: 0 0 41.666667%;
+	max-width: 41.666667%;
+}
+
+.grid-c-06 {
+	flex: 0 0 50%;
+	max-width: 50%;
+}
+
+.grid-c-07 {
+	flex: 0 0 58.333333%;
+	max-width: 58.333333%;
+}
+
+.grid-c-08 {
+	flex: 0 0 66.666667%;
+	max-width: 66.666667%;
+}
+
+.grid-c-09 {
+	flex: 0 0 75%;
+	max-width: 75%;
+}
+
+.grid-c-10 {
+	flex: 0 0 83.333333%;
+	max-width: 83.333333%;
+}
+
+.grid-c-11 {
+	flex: 0 0 91.666667%;
+	max-width: 91.666667%;
+}
+
+.grid-c-12 {
+	flex: 0 0 100%;
+	max-width: 100%;
+}
+
+.panel {
+	position: relative;
+	border-radius: 10upx;
+	overflow: hidden;
+	flex-direction: column;
+	background-color: #FFFFFF;
+	margin-bottom: 10px;
 }

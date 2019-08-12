@@ -1,14 +1,14 @@
 {
-	"name": "image",
-	"appid": "__UNI__D5C0215",
+	"name": "图片App模版",
+	"appid": "",
 	"description": "图片App模版",
 	"transformPx": false,
 	"icons": [{
 		"sizes": "分辨率，192x192",
 		"src": "图片路径"
 	}],
-	"versionName": "1.0.0",
-	"versionCode": 100,
+	"versionName": "1.0.2",
+	"versionCode": 102,
 	"app-plus": {
 		"usingComponents": true
 	},
@@ -38,4 +38,3 @@
 		}
 	}
 }
-// 小程序特有相关
