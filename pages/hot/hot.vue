@@ -1,8 +1,8 @@
 <template>
 	<view class="index">
-		<block v-for="list in lists" :key="list.id">
-			<view class="row">
-				<view class="card card-list2" v-for="item in list.data" @click="goDetail(item)" :key="item.img_src">
+		<view class="grid">
+			<view class="grid-c-06" v-for="item in lists" :key="item.guid">
+				<view class="panel" @click="goDetail(item)">
 					<image class="card-img card-list2-img" :src="item.img_src"></image>
 					<text class="card-num-view card-list2-num-view">{{item.img_num}}P</text>
 					<view class="card-bottm row">
@@ -13,7 +13,7 @@
 					</view>
 				</view>
 			</view>
-		</block>
+		</view>
 		<text class="loadMore">加载中...</text>
 	</view>
 </template>
@@ -77,10 +77,11 @@
 					url: this.$serverUrl + '/api/picture/posts.php?page=' + (this.refreshing ? 1 : this.fetchPageNum) +
 						'&per_page=10',
 					success: (ret) => {
+						console.log(ret)
 						if (ret.statusCode !== 200) {
 							console.log('请求失败:', ret)
 						} else {
-							if (this.refreshing && ret.data[0].id === this.lists[0][0].id) {
+							if (this.refreshing && ret.data[0].id === this.lists[0].id) {
 								uni.showToast({
 									title: '已经最新',
 									icon: 'none',
@@ -89,37 +90,32 @@
 								uni.stopPullDownRefresh();
 								return;
 							}
-							let list = {
-									id: '',
-									data: []
-								},
-								lists = [],
+							let list = [],
 								data = ret.data;
 							for (let i = 0, length = data.length; i < length; i++) {
-								let index = Math.floor(i / 2);
-								list.id = 'list' + i;
-								list.data.push(data[i]);
-								if (i % 2 == 1) {
-									lists.push(list);
-									list = {
-										id: '',
-										data: []
-									};
-								}
+								var item = data[i];
+								item.guid = this.newGuid() + item.id
+								list.push(item);
 							}
-							console.log('得到lists', lists);
+							console.log('得到list', list);
 							if (this.refreshing) {
 								this.refreshing = false;
 								uni.stopPullDownRefresh()
-								this.lists = lists;
+								this.lists = list;
 								this.fetchPageNum = 2;
 							} else {
-								this.lists = this.lists.concat(lists);
+								this.lists = this.lists.concat(list);
 								this.fetchPageNum += 1;
 							}
 						}
 					}
 				});
+			},
+			newGuid() {
+				let s4 = function() {
+					return (65536 * (1 + Math.random()) | 0).toString(16).substring(1);
+				}
+				return (s4() + s4() + "-" + s4() + "-4" + s4().substr(0, 3) + "-" + s4() + "-" + s4() + s4() + s4()).toUpperCase();
 			},
 			goDetail(e) {
 				uni.navigateTo({
@@ -167,4 +163,7 @@
 </script>
 
 <style>
+	.grid{
+		padding-top: 10px;
+	}
 </style>
