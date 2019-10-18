@@ -181,7 +181,7 @@
 					uni.downloadFile({
 						url: this.data[this.index],
 						success: (e) => {
-							var filePath = e.tempFilePath.replace('file://', '');
+							var filePath = plus.io.convertLocalFileSystemURL(e.tempFilePath);
 							var bitmap = BitmapFactory.decodeFile(filePath);
 							try {
 								wallpaperManager.setBitmap(bitmap);
