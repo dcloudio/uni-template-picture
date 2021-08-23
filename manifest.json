@@ -1,41 +1,47 @@
 {
-	"name": "图片App模版",
-	"appid": "",
-	"description": "图片App模版",
-	"transformPx": false,
-	"icons": [{
-		"sizes": "分辨率，192x192",
-		"src": "图片路径"
-	}],
-	"versionName": "1.0.2",
-	"versionCode": 102,
-	"app-plus": {
-		"usingComponents": true,
-		"compilerVersion": 3
-	},
-	// 5+App特有相关
-	"quickapp": {},
-	// 快应用特有相关
-	"mp-weixin": {
-		"setting": {
-			"urlCheck": false
-		},
-		"usingComponents": true
-	},
-	"mp-alipay": {
-		"usingComponents": true
-	},
-	"mp-baidu": {
-		"usingComponents": true
-	},
-	"mp-toutiao": {
-		"usingComponents": true
-	},
-	"h5": {
-		"template": "template.h5.html",
-		"router": {
-			"mode": "hash",
-			"base": "/demo/picture/website/"
-		}
-	}
+    "name" : "图片App模版",
+    "appid" : "",
+    "description" : "图片App模版",
+    "transformPx" : false,
+    "icons" : [
+        {
+            "sizes" : "分辨率，192x192",
+            "src" : "图片路径"
+        }
+    ],
+    "versionName" : "1.0.2",
+    "versionCode" : 102,
+    "compatConfig" : {
+        "MODE" : 2 // 2代表兼容Vue2模式，3代表非兼容Vue2模式
+    },
+    "app-plus" : {
+        "usingComponents" : true,
+        "compilerVersion" : 3
+    },
+    // 5+App特有相关
+    "quickapp" : {},
+    // 快应用特有相关
+    "mp-weixin" : {
+        "setting" : {
+            "urlCheck" : false
+        },
+        "usingComponents" : true
+    },
+    "mp-alipay" : {
+        "usingComponents" : true
+    },
+    "mp-baidu" : {
+        "usingComponents" : true
+    },
+    "mp-toutiao" : {
+        "usingComponents" : true
+    },
+    "h5" : {
+        "template" : "",
+        "router" : {
+            "mode" : "hash",
+            "base" : "./"
+        }
+    },
+    "vueVersion" : "3"
 }
